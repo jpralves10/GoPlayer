@@ -1,0 +1,11 @@
+/server/target/
+/server/!.mvn/wrapper/maven-wrapper.jar
+
+/electron/node_modules
+/electron/dist
+/electron/tmp
+/electron/out-tsc
+
+DumpTvPlayer 20180703.rar
+goplayer-electron 20181124.rar
+goplayer-server 20181124.rar

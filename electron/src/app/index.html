@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+  <body onload="socketConnect()" onbeforeunload="socketCloseConnect()">
+    <h1>Hello World!</h1>
+
+    <button onclick="resultados()">Resultados</button>
+    <br/>
+    <p id="result"></p>
+
+    <script>
+      var db = require('./database/database.js');
+
+      var socket = require("./socket.js")
+
+      function socketConnect(){
+        socket.wsConnect()
+      }
+      
+      function socketCloseConnect(){
+        socket.wsCloseConnect()
+      }
+
+      function resultados(){
+        let resultEl = document.getElementById("result");
+
+        var usuario = {
+          'cdEmpresa': '001',
+          'cdUsuario': '001',
+          'nmUsuario': 'Maria'
+        }
+
+        db.selectUsuario(usuario).then((rows) => {
+          if(rows.length == 0){
+            db.insertUsuario(usuario)
+          }else{
+            db.updateUsuario(usuario)
+          }
+        })
+
+        db.selectUsuario(usuario).then((rows) => {
+          if(rows.length > 0){
+            for(let row of rows){
+              resultEl.innerHTML += "Nome: " + row.nmUsuario + "<br/>";
+            }
+          }
+        });
+
+        db.removeUsuario(usuario)
+
+      }
+    </script>
+
+    <script>
+      // You can also require other files to run in this process
+      //require('./renderer.js')
+    </script>
+  </body>
+</html>

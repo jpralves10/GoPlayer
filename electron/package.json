@@ -1,0 +1,25 @@
+{
+  "name": "goplayer",
+  "version": "1.0.0",
+  "description": "GoPlayer application",
+  "main": "main.js",
+  "scripts": {
+    "rebuild": "electron-rebuild -f -w sqlite3",
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "tripcar"
+  ],
+  "author": "jpralves",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.8.7",
+    "electron-rebuild": "^1.7.3"
+  },
+  "dependencies": {
+    "file-system": "^2.2.2",
+    "knex": "^0.14.4",
+    "sqlite3": "^4.0.0"
+  }
+}
